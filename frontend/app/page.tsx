@@ -40,7 +40,7 @@ export default function ResearchAgent() {
     
     const threadId = uuidv4();
     // Production Note: Use env vars for URLs
-    const wsUrl = process.env.NEXT_PUBLIC_API_URL || 'ws://localhost:8000';
+    const wsUrl = process.env.NEXT_PUBLIC_API_URL || 'http://13.61.11.143:8000';
     socket.current = new WebSocket(`${wsUrl}/ws/research/${threadId}`);
 
     socket.current.onopen = () => {
@@ -85,7 +85,7 @@ export default function ResearchAgent() {
     const filename = `research_report_${new Date().toISOString().split('T')[0]}.${format}`;
 
     try {
-      const wsUrl = process.env.NEXT_PUBLIC_API_URL || 'ws://localhost:8000';
+      const wsUrl = process.env.NEXT_PUBLIC_API_URL || 'http://13.61.11.143:8000';
       const apiUrl = wsUrl.replace('ws://', 'http://').replace('wss://', 'https://');
       const response = await fetch(`${apiUrl}/download`, {
         method: 'POST',
